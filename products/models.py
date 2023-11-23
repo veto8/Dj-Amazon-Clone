@@ -15,6 +15,7 @@ class Products(models.Model):
     sku = models.PositiveIntegerField(_('SKU'))
     price = models.FloatField(_('Price'))
     flag = models.CharField(_("Flag"), max_length=50, choices=FLAG_OPTION)
+    image = models.ImageField(_("Image"), upload_to='product/')
     subtitle = models.TextField(_('Subtitle'),max_length=1000)
     description = models.TextField(_('Description'),max_length=5000)
     quantity = models.PositiveIntegerField(_('Quantity'))
@@ -27,7 +28,7 @@ class Products(models.Model):
 
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Products, verbose_name=_("Product_Image"), on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, verbose_name=_("Product_Image"), on_delete=models.CASCADE, related_name='product_img')
     img = models.ImageField(_("Product_Image"), upload_to='productImg/')
 
     def __str__(self):

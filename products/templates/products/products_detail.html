@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'css/product-details.css' %}">
+{% endblock css %}
+    
 
 {% block body %}
     
@@ -32,22 +37,23 @@
                     <div class="col-lg-6">
                         <div class="details-gallery">
                             <div class="details-label-group">
-                                <label class="details-label new">new</label>
+                                <label class="details-label new">{{products.flag}}</label>
                                 <label class="details-label off">-10%</label>
                             </div>
                             <ul class="details-preview"> 
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
+                                
+                                {% for image in products.product_img.all  %}
+                                    <li><img src="{{image.img.url}}" alt="product"></li>  
+                                {% endfor %}
+                                    
+                                
+
                             </ul>
                             <ul class="details-thumb">
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
-                                <li><img src="images/product/01.jpg" alt="product"></li>
+                                {% for image in products.product_img.all  %}
+                                    <li><img src="{{image.img.url}}" alt="product"></li>  
+                                {% endfor %}
+
                             </ul>
                         </div>
                     </div>
@@ -75,10 +81,10 @@
                             </li>
                         </ul>
                         <div class="details-content">
-                            <h3 class="details-name"><a href="#">existing product name</a></h3>
+                            <h3 class="details-name"><a href="#">{{products}}</a></h3>
                             <div class="details-meta">
-                                <p>SKU:<span>1234567</span></p>
-                                <p>BRAND:<a href="#">radhuni</a></p>
+                                <p>SKU:<span>{{products.sku}}</span></p>
+                                <p>BRAND:<a href="#">{{products.brand}}</a></p>
                             </div>
                             <div class="details-rating">
                                 <i class="active icofont-star"></i>
@@ -90,9 +96,9 @@
                             </div>
                             <h3 class="details-price">
                                 <del>$38.00</del>
-                                <span>$24.00<small>/per kilo</small></span>
+                                <span>${{products.price}}<small>/per kilo</small></span>
                             </h3>
-                            <p class="details-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit facere harum natus amet soluta fuga consectetur alias veritatis quisquam ab eligendi itaque eos maiores quibusdam.</p>
+                            <p class="details-desc">{{products.subtitle}}</p>
                             <div class="details-list-group">
                                 <label class="details-list-title">tags:</label>
                                 <ul class="details-tag-list">
@@ -151,7 +157,7 @@
                         <div class="product-details-frame">
                             <h3 class="frame-title">Description</h3>
                             <div class="tab-descrip">
-                                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequatur, ex! Incidunt nemo aspernatur fugiat, saepe suscipit sit perferendis illum magnam voluptates aliquid blanditiis, dolor assumenda dolorem ullam harum, doloribus molestiae! Unde voluptas maiores exercitationem aperiam debitis accusantium, placeat vero neque, atque eius numquam incidunt, culpa a odit consequatur nostrum aut nisi quisquam sequi dignissimos sed. Odio necessitatibus officiis repudiandae omnis soluta fugiat aliquam eius quae. Unde, ipsam atque assumenda consequuntur quia alias nulla, cupiditate ab quos eveniet pariatur expedita repellendus fugit. Quisquam fuga et, dolore aut temporibus atque itaque nesciunt reiciendis nobis, deleniti nihil vel qui perferendis molestias aliquam doloremque.</p>
+                                <p>{{products.description}}</p>
                             </div>
                         </div>
                         <div class="product-details-frame">
