@@ -40,20 +40,15 @@
                                 <label class="details-label new">{{products.flag}}</label>
                                 <label class="details-label off">-10%</label>
                             </div>
-                            <ul class="details-preview"> 
-                                
+                            <ul class="details-preview">                                 
                                 {% for image in products.product_img.all  %}
                                     <li><img src="{{image.img.url}}" alt="product"></li>  
                                 {% endfor %}
-                                    
-                                
-
                             </ul>
                             <ul class="details-thumb">
                                 {% for image in products.product_img.all  %}
                                     <li><img src="{{image.img.url}}" alt="product"></li>  
                                 {% endfor %}
-
                             </ul>
                         </div>
                     </div>
