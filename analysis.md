@@ -22,7 +22,7 @@ order
     -sub_total
     -total
 
-order_table
+order_detail
     -order_id
     -product_id
     -price
