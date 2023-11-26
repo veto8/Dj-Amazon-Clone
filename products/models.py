@@ -4,6 +4,9 @@ from django.utils.translation import gettext as _
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from taggit.managers import TaggableManager
+from django.utils.text import slugify
+
+
 
 FLAG_OPTION = (
     ('New','New'),
@@ -22,10 +25,14 @@ class Products(models.Model):
     brand = models.ForeignKey( 'Brand' ,on_delete=models.SET_NULL, related_name='product_Brand' ,blank=True, null=True)
     category = models.ForeignKey("Category", on_delete=models.SET_NULL, related_name='Category' ,blank=True, null=True)
     tags = TaggableManager()
+    slug = models.SlugField(_("Slug"), blank=True, null=True)
 
     def __str__(self):
         return self.name
-
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Products, self).save(*args, **kwargs) 
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Products, verbose_name=_("Product_Image"), on_delete=models.CASCADE, related_name='product_img')

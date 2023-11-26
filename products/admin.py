@@ -10,8 +10,9 @@ class ProductImageTabuler(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImageTabuler]
     list_display = ['name','flag','category','price']
-    list_filter = ['category','brand','price']
-    search_fields = ['name','category']
+    list_filter = ['category','brand']
+    search_fields = ['name','category','price']
+    delete_selected_confirmation_template =['name']
 
 
 admin.site.register(Products,ProductAdmin)
