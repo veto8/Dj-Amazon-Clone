@@ -23,7 +23,7 @@ class CategoryList(generic.ListView):
 
 class BrandList(generic.ListView):
     model = Brand
-    paginate_by = 10
+    paginate_by = 20
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["ctgs"] = Category.objects.all()

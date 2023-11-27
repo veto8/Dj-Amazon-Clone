@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #3rd apps
     "taggit",
     "debug_toolbar",
+    'rest_framework',
 
     #my apps
     'acounts',
@@ -48,6 +49,11 @@ INSTALLED_APPS = [
     'products',
     'settings',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 50
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -80,8 +80,8 @@ def delete_dummy_data():
 
 
 
-create_ctg(20)
-create_brand(40)   
-create_pdct(1000)
-create_pdct_img(1300)
-create_product_review(1000)
+# create_ctg(20)
+# create_brand(40)   
+# create_pdct(1000)
+# create_pdct_img(1300)
+# create_product_review(1000)
