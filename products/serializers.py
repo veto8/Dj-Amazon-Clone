@@ -32,6 +32,13 @@ class CategoryDetailSerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
 
+class BrandDetailSerializer(serializers.ModelSerializer):
+    products = ProductSerializer(source = 'product_Brand',many=True)
+    category = serializers.StringRelatedField()
+    class Meta:
+        model = Brand
+        fields = '__all__'
+
 
 
 
