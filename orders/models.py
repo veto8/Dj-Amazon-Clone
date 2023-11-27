@@ -17,8 +17,8 @@ class Cart(models.Model):
     code = models.CharField(_("Id"), max_length=50, default=genrate_code)
     status = models.CharField(_("Status"), max_length=50,choices=CART_OPTION)
 
-    def __str__(self):
-        return self.id
+    def __str__(self): 
+        return self.code
 
     def get_total():
         total = 0
@@ -55,7 +55,7 @@ class Order(models.Model):
     delevery_time = models.DateField(_("Delevery_time"), blank=True, null=True)
 
     def __str__(self):
-        return self.id
+        return self.code
 
 
 
