@@ -1,28 +1,35 @@
 from rest_framework import generics
 
-from .serializers import ProductSerializer, CategorySerializer, BrandSerializer
+from .serializers import ProductSerializer, CategorySerializer, BrandSerializer,CategoryDetailSerializer
 from .models import Products , Brand, Category 
 
 
 
-class ProductListApi(generics.ListCreateAPIView):
+class ProductListApi(generics.ListAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializer
     
-class ProductDetailApi(generics.RetrieveUpdateDestroyAPIView):
+class ProductDetailApi(generics.RetrieveAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializer
 
-class CategoryListApi(generics.ListCreateAPIView):
+
+
+class CategoryListApi(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
+class CategoryDetailApi(generics.RetrieveAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategoryDetailSerializer
 
-class BrandListApi(generics.ListCreateAPIView):
+
+
+class BrandListApi(generics.ListAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
 
-class BrandDetailApi(generics.RetrieveUpdateDestroyAPIView):
+class BrandDetailApi(generics.RetrieveAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
 
