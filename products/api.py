@@ -1,4 +1,4 @@
-from rest_framework import generics, filters
+from rest_framework import generics, filters, viewsets
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.permissions import IsAuthenticated
 
@@ -54,6 +54,17 @@ class BrandDetailApi(generics.RetrieveAPIView):
     permission_classes = [IsAuthenticated]
 
 
+#____sets viwe _____
+
+class ProductViewSets(viewsets.ModelViewSet):
+    queryset = Products.objects.all()
+    serializer_class = ProductSerializer
+
+
+
+
+
+#_____function view______
 
 # from rest_framework.response import Response
 # from rest_framework.decorators import api_view
