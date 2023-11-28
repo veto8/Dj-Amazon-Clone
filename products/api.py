@@ -1,4 +1,6 @@
-from rest_framework import generics
+from rest_framework import generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated
 
 from .serializers import ProductSerializer, CategorySerializer, BrandSerializer,CategoryDetailSerializer,BrandDetailSerializer
 from .models import Products , Brand, Category 
@@ -8,30 +10,48 @@ from .models import Products , Brand, Category
 class ProductListApi(generics.ListAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter] 
+    filterset_fields = ['name', 'category']
+    search_fields = ['name', 'price']
+    ordering_fields = ['price', 'quantity']
+    permission_classes = [IsAuthenticated]
     
 class ProductDetailApi(generics.RetrieveAPIView):
     queryset = Products.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [IsAuthenticated]
 
 
 
 class CategoryListApi(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter] 
+    filterset_fields = ['name', ]
+    search_fields = ['name', ]
+    ordering_fields = ['name', ]
+    permission_classes = [IsAuthenticated]
 
 class CategoryDetailApi(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryDetailSerializer
+    permission_classes = [IsAuthenticated]
 
 
 
 class BrandListApi(generics.ListAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter] 
+    filterset_fields = ['name', 'category']
+    search_fields = ['name', ]
+    ordering_fields = ['category', ]
+    permission_classes = [IsAuthenticated]
 
 class BrandDetailApi(generics.RetrieveAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandDetailSerializer
+    permission_classes = [IsAuthenticated]
 
 
 
