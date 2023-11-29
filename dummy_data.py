@@ -69,10 +69,10 @@ def create_product_review(n):
 
 #delete the dummy data
 def delete_dummy_data():
-    Brand.objects.all().delete()
-    Category.objects.all().delete()
-    Products.objects.all().delete()  
-    ProductImage.objects.all().delete()
+    # Brand.objects.all().delete()
+    # Category.objects.all().delete()
+    # Products.objects.all().delete()  
+    # ProductImage.objects.all().delete()
     ProductReviews.objects.all().delete() 
     print("Dummy data deleted successfully.")
 

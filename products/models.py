@@ -30,6 +30,9 @@ class Products(models.Model):
     def __str__(self):
         return self.name
     
+    # def avg_rate(self):
+    #     avg = self.product_review.a
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super(Products, self).save(*args, **kwargs) 
@@ -51,6 +54,14 @@ class Brand(models.Model):
         return self.name
 
 
+class Category(models.Model):
+    name = models.CharField(_("Category_Name"),max_length=50)
+    img = models.ImageField(_("Category_image"), upload_to='categoryImg/')
+
+    def __str__(self):
+        return self.name
+
+
 class ProductReviews(models.Model):
     user =models.ForeignKey(User, on_delete=models.CASCADE, verbose_name=_("User"), related_name='user_review')
     product = models.ForeignKey(Products, on_delete=models.CASCADE , verbose_name=_("Product"), related_name='product_review')
@@ -59,12 +70,4 @@ class ProductReviews(models.Model):
     created_at = models.DateField(_("Date_time"),default=timezone.now)
 
     def __str__(self):
-        return str(self.user)
-
-class Category(models.Model):
-    name = models.CharField(_("Category_Name"),max_length=50)
-    img = models.ImageField(_("Category_image"), upload_to='categoryImg/')
-
-    def __str__(self):
-        return self.name
-    
+        return f' {self.user.username} - {self.product.name}' 
