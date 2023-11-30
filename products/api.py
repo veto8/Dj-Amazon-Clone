@@ -5,6 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import ProductSerializer, CategorySerializer, BrandSerializer,CategoryDetailSerializer,BrandDetailSerializer
 from .models import Products , Brand, Category 
 from .myfilter import ProductFilter
+from .mypagination import MyPagination
 
 
 
@@ -16,6 +17,8 @@ class ProductListApi(generics.ListAPIView):
     search_fields = ['name', 'price']
     ordering_fields = ['price', 'quantity']
     filterset_class = ProductFilter
+    pagination_class = MyPagination
+    permission_classes = [IsAuthenticated]
     
     
 class ProductDetailApi(generics.RetrieveAPIView):
