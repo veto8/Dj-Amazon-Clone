@@ -7,13 +7,11 @@ from .forms import ReviewForm
 
 
 
-
 class ProductList(generic.ListView):
     model = Products
     paginate_by = 20
 
-
-    
+   
 
 class ProductDetail(generic.DetailView):
     model = Products

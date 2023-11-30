@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from .serializers import ProductSerializer, CategorySerializer, BrandSerializer,CategoryDetailSerializer,BrandDetailSerializer
 from .models import Products , Brand, Category 
+from .myfilter import ProductFilter
 
 
 
@@ -14,7 +15,8 @@ class ProductListApi(generics.ListAPIView):
     filterset_fields = ['name', 'category']
     search_fields = ['name', 'price']
     ordering_fields = ['price', 'quantity']
-    permission_classes = [IsAuthenticated]
+    filterset_class = ProductFilter
+    
     
 class ProductDetailApi(generics.RetrieveAPIView):
     queryset = Products.objects.all()

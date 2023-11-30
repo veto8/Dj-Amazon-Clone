@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator
 from taggit.managers import TaggableManager
 from django.utils.text import slugify
+from django.db.models import aggregates
 
 
 
@@ -31,7 +32,7 @@ class Products(models.Model):
         return self.name
     
     # def avg_rate(self):
-    #     avg = self.product_review.a
+    #     avg = self.product_review.aggregates(rate_avg=Avg('rate'))
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
