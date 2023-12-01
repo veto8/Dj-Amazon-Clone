@@ -42,39 +42,18 @@
                             </div>
                             <ul class="details-preview">                                 
                                 {% for image in products.product_img.all  %}
-                                    <li><img src="{{image.img.url}}" alt="product"></li>  
+                                    <li><img src="{{image.img.url}}" tyle="width: 696px; height: 842px;" alt="product"></li>  
                                 {% endfor %}
                             </ul>
                             <ul class="details-thumb">
                                 {% for image in products.product_img.all  %}
-                                    <li><img src="{{image.img.url}}" alt="product"></li>  
+                                    <li><img src="{{image.img.url}}" style="width: 120px; height: 120px;" alt="product"></li>  
                                 {% endfor %}
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <ul class="product-navigation">
-                            <li class="product-nav-prev">
-                                <a href="#">
-                                    <i class="icofont-arrow-left"></i>
-                                    prev product
-                                    <span class="product-nav-popup">
-                                        <img src="images/product/02.jpg" alt="product">
-                                        <small>green chilis</small>
-                                    </span>
-                                </a>
-                            </li>
-                            <li class="product-nav-next">
-                                <a href="#">
-                                    next product
-                                    <i class="icofont-arrow-right"></i>
-                                    <span class="product-nav-popup">
-                                        <img src="images/product/03.jpg" alt="product">
-                                        <small>green chilis</small>
-                                    </span>
-                                </a>
-                            </li>
-                        </ul>
+
                         <div class="details-content">
                             <h3 class="details-name"><a href="#">{{products}}</a></h3>
                             <div class="details-meta">
@@ -275,7 +254,7 @@
                                     <i class="fas fa-heart"></i>
                                 </button>
                                 <a class="product-image" href="{% url 'products:product_detail' product.id %}">
-                                    <img src="{{product.image.url}}" style='width: 178px;height: 207px;' alt="product">
+                                    <img src="{{product.image.url}}" style='width: 200px;height: 207px;' alt="product">
                                 </a>
                                 <div class="product-widget">
                                     <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
@@ -319,7 +298,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-btn-25">
-                            <a href="shop-4column.html" class="btn btn-outline">
+                            <a href="{% url 'products:product_list' %}" class="btn btn-outline">
                                 <i class="fas fa-eye"></i>
                                 <span>view all related</span>
                             </a>
