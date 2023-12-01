@@ -13,10 +13,10 @@ app_name = 'products'
 
 urlpatterns =[
     path('', ProductList.as_view(), name='product_list'),
-    path('<int:pk>', ProductDetail.as_view(), name='product_detail'),
+    path('<slug:slug>', ProductDetail.as_view(), name='product_detail'),
     path('<int:pk>/add_review', add_review, name='add_review'),
-    path('ctg', CategoryList.as_view(), name='ctg_list'),
-    path('brand', BrandList.as_view(), name='brand_list'),
+    path('ctg/', CategoryList.as_view(), name='ctg_list'),
+    path('brand/', BrandList.as_view(), name='brand_list'),
     path('brand/<int:pk>', BrandDetail.as_view(), name='brand_detail'),
 
 

@@ -63,8 +63,9 @@ class BrandList(generic.ListView):
 
 class BrandDetail(generic.DetailView):
     model = Brand 
-    
+    paginate_by = 30
+   
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["products"] = Products.objects.all()
+        context["products"] = Products.objects.filter(brand=self.get_object())
         return context
