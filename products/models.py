@@ -31,6 +31,9 @@ class Products(models.Model):
     def __str__(self):
         return self.name
     
+    class Meta:
+        ordering = ['-id']
+    
     # def avg_rate(self):
     #     avg = self.product_review.aggregates(rate_avg=Avg('rate'))
     
@@ -50,9 +53,17 @@ class Brand(models.Model):
     name = models.CharField(_("BrandName"), max_length=100)
     img = models.ImageField(_("BrandImage"),upload_to='brandImage/')
     category = models.ForeignKey("Category", on_delete=models.SET_NULL, related_name='brand_Category' ,blank=True, null=True)
+    slug = models.SlugField(_("Slug"), blank=True, null=True)
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        ordering = ['-id']
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Brand, self).save(*args, **kwargs) 
 
 
 class Category(models.Model):
