@@ -18,12 +18,12 @@ class Cart(models.Model):
     status = models.CharField(_("Status"), max_length=50,choices=CART_OPTION)
 
     def __str__(self): 
-        return self.code
+        return str(self.user)
 
-    def get_total():
+    def get_total(self):
         total = 0
-        for product in self.cart_detail.all():
-            total += product.total
+        for item in self.cart_detail.all():
+            total += item.total
         return total
 
 class CartDetail(models.Model):
@@ -33,7 +33,7 @@ class CartDetail(models.Model):
     total = models.PositiveIntegerField(_("Total"),blank=True, null=True)
 
     def __str__(self):
-        return str(self.order)
+        return str(self.cart)
 
 
 ORDER_OPTION = (
