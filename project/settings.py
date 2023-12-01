@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
+    'dj_rest_auth',
 
     #my apps
     'acounts',
@@ -164,6 +165,11 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'jwt-auth',
+}
 
 
 DEBUG_TOOLBAR_CONFIG = {
