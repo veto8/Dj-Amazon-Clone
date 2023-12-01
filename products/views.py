@@ -17,7 +17,8 @@ class ProductDetail(generic.DetailView):
     model = Products
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["reviews"] = ProductReviews.objects.all()
+        context["reviews"] = ProductReviews.objects.filter(product=self.get_object())
+        context['related_products'] = Products.objects.filter(brand=self.get_object().brand)[0:10]
         return context
 
 
