@@ -51,7 +51,7 @@ class Order(models.Model):
     delevery_time = models.DateField(_("Delevery_time"), blank=True, null=True)
 
     def __str__(self):
-        return self.code
+        return f'{self.code} - {str(self.user)}'
 
 
 class OrderDetail(models.Model):
