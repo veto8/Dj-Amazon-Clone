@@ -1,0 +1,175 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-03 14:02+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+#: .\orders\models.py:18 .\orders\models.py:49
+msgid "Status"
+msgstr ""
+
+#: .\orders\models.py:32 .\orders\models.py:61
+msgid "Quntity"
+msgstr ""
+
+#: .\orders\models.py:33 .\orders\models.py:62
+msgid "Total"
+msgstr ""
+
+#: .\orders\models.py:48
+msgid "Id"
+msgstr ""
+
+#: .\orders\models.py:50
+msgid "Order_time"
+msgstr ""
+
+#: .\orders\models.py:51
+msgid "Delevery_time"
+msgstr ""
+
+#: .\orders\models.py:60 .\products\models.py:20
+msgid "Price"
+msgstr ""
+
+#: .\orders\models.py:70
+msgid "Code"
+msgstr ""
+
+#: .\orders\models.py:71
+msgid "Discount"
+msgstr ""
+
+#: .\orders\models.py:72 .\products\models.py:25
+msgid "Quantity"
+msgstr ""
+
+#: .\orders\models.py:73
+msgid "Start Date"
+msgstr ""
+
+#: .\orders\models.py:74
+msgid "End Date"
+msgstr ""
+
+#: .\products\models.py:18 .\settings\models.py:6
+msgid "Name"
+msgstr ""
+
+#: .\products\models.py:19
+msgid "SKU"
+msgstr ""
+
+#: .\products\models.py:21
+msgid "Flag"
+msgstr ""
+
+#: .\products\models.py:22
+msgid "Image"
+msgstr ""
+
+#: .\products\models.py:23 .\settings\models.py:10
+msgid "Subtitle"
+msgstr ""
+
+#: .\products\models.py:24
+msgid "Description"
+msgstr ""
+
+#: .\products\models.py:29 .\products\models.py:56
+msgid "Slug"
+msgstr ""
+
+#: .\products\models.py:45 .\products\models.py:46
+msgid "Product_Image"
+msgstr ""
+
+#: .\products\models.py:53
+msgid "BrandName"
+msgstr ""
+
+#: .\products\models.py:54
+msgid "BrandImage"
+msgstr ""
+
+#: .\products\models.py:70
+msgid "Category_Name"
+msgstr ""
+
+#: .\products\models.py:71
+msgid "Category_image"
+msgstr ""
+
+#: .\products\models.py:78
+msgid "User"
+msgstr ""
+
+#: .\products\models.py:79
+msgid "Product"
+msgstr ""
+
+#: .\products\models.py:80
+msgid "ProductRate"
+msgstr ""
+
+#: .\products\models.py:81
+msgid "Feedback"
+msgstr ""
+
+#: .\products\models.py:82
+msgid "Date_time"
+msgstr ""
+
+#: .\settings\models.py:7
+msgid "Logo"
+msgstr ""
+
+#: .\settings\models.py:8
+msgid "Call_us"
+msgstr ""
+
+#: .\settings\models.py:9
+msgid "Email"
+msgstr ""
+
+#: .\settings\models.py:11
+msgid "Facebook_link"
+msgstr ""
+
+#: .\settings\models.py:12
+msgid "Instegrame_link"
+msgstr ""
+
+#: .\settings\models.py:13
+msgid "LinkedIn_link"
+msgstr ""
+
+#: .\settings\models.py:14
+msgid "Twettir_link"
+msgstr ""
+
+#: .\settings\models.py:15
+msgid "Emails"
+msgstr ""
+
+#: .\settings\models.py:16
+msgid "Phones"
+msgstr ""
+
+#: .\settings\models.py:17
+msgid "Location"
+msgstr ""

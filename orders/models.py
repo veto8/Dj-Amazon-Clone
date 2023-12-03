@@ -24,12 +24,12 @@ class Cart(models.Model):
         total = 0
         for item in self.cart_detail.all():
             total += item.total
-        return total
+        return round(total,2)
 
 class CartDetail(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE,related_name='cart_detail')
     product = models.ForeignKey(Products, on_delete=models.SET_NULL,blank=True, null=True, related_name='product_cart')
-    quantity = models.PositiveIntegerField(_("Quntity"))
+    quantity = models.PositiveIntegerField(_("Quntity") ,default=1)
     total = models.PositiveIntegerField(_("Total"),blank=True, null=True)
 
     def __str__(self):
