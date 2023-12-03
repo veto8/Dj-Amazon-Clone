@@ -27,8 +27,10 @@ def add_to_cart(request):
 
     return redirect(f'/products/{product.slug}')
 
-def delete_product_cart(request):
-    ''
+def remove_from_cart(request,id):
+    cart= CartDetail.objects.get(id=id)
+    cart.delete()
+    return redirect('/products/')
 
 
 @login_required

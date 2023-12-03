@@ -485,7 +485,8 @@
                 <li class="cart-item">
                     <div class="cart-media">
                         <a href="#"><img src="{{item.product.image.url}}" alt="product"></a>
-                        <button class="cart-delete"><i class="far fa-trash-alt"></i></button>
+                        <a href="{% url 'orders:remove_from_cart' item.id %}"><button class="cart-delete"><i class="far fa-trash-alt"></i></button></a>
+                        
                     </div>
                     <div class="cart-info-group">
                         <div class="cart-info">
