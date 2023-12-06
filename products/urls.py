@@ -24,7 +24,7 @@ urlpatterns =[
     # path('api', product_list_api),
     # path('api/<int:pk>', product_detail_api),
 
-    path('api', ProductListApi.as_view()),
+    path('api/', ProductListApi.as_view()),
     path('api/<int:pk>', ProductDetailApi.as_view()),
     
     path('api/ctg', CategoryListApi.as_view()),
