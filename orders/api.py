@@ -1,6 +1,8 @@
 from rest_framework import generics
 from rest_framework.response import Response
 from django.contrib.auth.models import User
+from django.shortcuts import get_object_or_404
+from datetime import datetime
 
 from .models import Cart ,CartDetail,Order,OrderDetail,Coupon
 from .serializer import CartSerializer,OrderDetailSerializer,OrderListSerializer,ProductOrderSerializer
@@ -102,7 +104,51 @@ class CreateOrderAPI(generics.GenericAPIView):
         cart.status = 'completed'
         cart.save()
         return Response({'Messege':'Order Created Successfully'})
+    
+
 class ApplyCouponAPI(generics.GenericAPIView):
-    pass
+    
+    def post(self,request,*args, **kwargs):
+        user = User.objects.get(username=self.kwargs['username'])
+        cart = Cart.objects.get(user=user,status='in_progress')
+
+        coupon = get_object_or_404(Coupon,code=request.data['coupon_value'])
+
+        if coupon and coupon.quantity > 0:
+            today_date = datetime.today().date()
+
+            start_date = coupon.start_date.date()
+            end_date = coupon.end_date.date()
+
+            if today_date >= start_date and today_date <= end_date:
+                total_value = cart.get_total()
+
+                
+                discounted_amount =  total_value - (total_value * coupon.discount / 100)
+
+                coupon.quantity -= 1
+                coupon.save()
+
+                cart.coupon = coupon
+                cart.total_after_coupon = discounted_amount
+                cart.save()
+
+                cart = Cart.objects.get(user=user,status='in_progress')
+                info = CartSerializer(cart).data
+
+                return Response({
+                    "message":"Coupon applied successfully",
+                    "total_after_discount":discounted_amount,
+                    "cart":info,
+                })
+            
+            else:
+                return Response({'message':'coupon date is not valid'})
+            
+        else:
+            return Response({'message':'no coupon found '})
+
+                
+
         
  
