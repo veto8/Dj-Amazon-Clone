@@ -5,7 +5,7 @@ from products.models import Products,Brand,Category,ProductReviews
 from django.views.decorators.cache import cache_page
 
 
-# @cache_page(60 * 1)
+@cache_page(60 * 1)
 def home(request):
     sale_product = Products.objects.filter(flag='Sale')[:10]
     feature_product = Products.objects.filter(flag='Feature')[0:6]
