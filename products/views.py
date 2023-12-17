@@ -2,7 +2,9 @@ from django.shortcuts import render ,redirect
 from django.urls import reverse 
 from django.views import generic
 from django.db.models.aggregates import Count
-from django.contrib.auth.models import User
+from django.http import JsonResponse
+from django.template.loader import render_to_string
+
 from .models import Products,Brand,Category,ProductReviews,ProductImage
 from .forms import ReviewForm
 
@@ -86,4 +88,6 @@ def add_review(request,slug):
         feedback = review,
         user = user, 
     )
-    return redirect(f'/products/{product.slug}')
+    reviews = ProductReviews.objects.filter(product=product)
+    html = render_to_string('includes/review.html',{'reviews':reviews})
+    return JsonResponse({'html':html})
