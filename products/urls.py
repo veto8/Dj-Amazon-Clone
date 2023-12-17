@@ -14,13 +14,16 @@ app_name = 'products'
 urlpatterns =[
     path('', ProductList.as_view(), name='product_list'),
     path('<slug:slug>', ProductDetail.as_view(), name='product_detail'),
-    path('<int:pk>/add_review', add_review, name='add_review'),
+    path('<slug:slug>/add_review', add_review, name='add_review'),
+
     path('ctg/', CategoryList.as_view(), name='ctg_list'),
+
     path('brand/', BrandList.as_view(), name='brand_list'),
     path('brand/<slug:slug>', BrandDetail.as_view(), name='brand_detail'),
 
 
     #___API___
+
     # path('api', product_list_api),
     # path('api/<int:pk>', product_detail_api),
 

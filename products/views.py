@@ -2,6 +2,7 @@ from django.shortcuts import render ,redirect
 from django.urls import reverse 
 from django.views import generic
 from django.db.models.aggregates import Count
+from django.contrib.auth.models import User
 from .models import Products,Brand,Category,ProductReviews,ProductImage
 from .forms import ReviewForm
 
@@ -21,17 +22,6 @@ class ProductDetail(generic.DetailView):
         context['related_products'] = Products.objects.filter(brand=self.get_object().brand)[0:10]
         return context
 
-
-def add_review(request,id):
-    product = Products.objects.get(id=id)
-    if request.method == 'post':
-        pod = ReviewForm(request.post)
-        if pod.is_valid():
-            form = pod.save(commit=False)
-            form.user = request.user
-            form.product = product
-            form.save()
-            return redirect(reverse('products:product_detail', kwargs={'id':id}))
     
 
 class CategoryList(generic.ListView):
@@ -75,3 +65,25 @@ class BrandDetail(generic.ListView):
         context = super().get_context_data(**kwargs)
         context["brand"] =Brand.objects.get(slug=self.kwargs['slug'])
         return context
+    
+
+def add_review(request,slug):
+    product = Products.objects.get(slug=slug)
+
+    rate = request.POST['rate']
+    review = request.POST['review']
+
+        # Check if the user is authenticated
+    if request.user.is_authenticated:
+        user = request.user
+    else:
+        # Handle the case of an anonymous user, you can set user to None or any default value
+        user = None
+
+    ProductReviews.objects.create(
+        product = product,
+        rate = rate,
+        feedback = review,
+        user = user, 
+    )
+    return redirect(f'/products/{product.slug}')
