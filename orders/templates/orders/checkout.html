@@ -73,31 +73,14 @@
                                 </div>
                                 <div class="chekout-coupon">
                                     <button class="coupon-btn">Do you have a coupon code?</button>
-                                    <form class="coupon-form" method="post" >
+                                    <form class="coupon-form" id="form_coupon" method="post" >
                                         {% csrf_token %}
                                         <input type="text" name="coupon_code" placeholder="Enter your coupon code">
                                         <button type="submit"><span>apply</span></button>
                                     </form>
                                 </div>
-                                <div class="checkout-charge">
-                                    <ul>
-                                        <li>
-                                            <span>Sub total</span>
-                                            <span>${{sub_total}}</span>
-                                        </li>
-                                        <li>
-                                            <span>delivery fee</span>
-                                            <span>${{delvery_fee}}</span>
-                                        </li>
-                                        <li>
-                                            <span>discount</span>
-                                            <span>${{discount}}</span>
-                                        </li>
-                                        <li>
-                                            <span>Total<small>(Incl. VAT)</small></span>
-                                            <span>${{total}}</span>
-                                        </li>
-                                    </ul>
+                                <div class="checkout-charge" id="coupon_table">
+                                    {% include 'includes/coupon_table.html' %}
                                 </div>
                             </div>
                         </div>
@@ -427,5 +410,28 @@
         <!--=====================================
                     MODAL EDIT FORM END
         =======================================-->
+        <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+        <script>
+            $(document).ready(function(e){
+                
+                $(document).on('submit','#form_coupon',function(e){
+                    e.preventDefault()  //refresh
 
+                    $.ajax({
+                        type: $(this).attr('method'),
+                        url:$(this).attr('action'),
+                        data: $(this).serialize(),
+                        dataType: 'json',
+                        success:function(response){
+                            $('#coupon_table').html(response['html'])
+                          //  $('#form_coupon').trigger('reset');
+                        },
+                        erorr:function(response){
+                            
+                        }
+                    })
+                })
+            })
+
+        </script>
 {% endblock body %}

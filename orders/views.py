@@ -4,6 +4,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render,redirect
 from django.shortcuts import get_object_or_404
 from datetime import datetime
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 from .models import Order ,OrderDetail,Cart,CartDetail,Coupon
 from products.models import Products
@@ -68,17 +70,27 @@ def checkout(request):
 
                 cart = Cart.objects.get(user=request.user,status='in_progress')
 
-                return render(request, 'orders/checkout.html', {
+                html = render_to_string('includes/coupon_table.html',{
                     'cart_detail':cart_detail,
                     'sub_total':total_after_discount,
                     'delvery_fee':delvery_fee,
                     'discount':discount ,
                     'total':total,
                 })
+                return JsonResponse({'html':html})
+
+                # return render(request, 'orders/checkout.html', {
+                #     'cart_detail':cart_detail,
+                #     'sub_total':total_after_discount,
+                #     'delvery_fee':delvery_fee,
+                #     'discount':discount ,
+                #     'total':total,
+                # })
+            
     else:
-            total_value = cart.get_total()
-            total = total_value + delvery_fee  
-            discount = 0
+        total_value = cart.get_total()
+        total = total_value + delvery_fee  
+        discount = 0
 
     return render(request, 'orders/checkout.html',{
                 'cart_detail':cart_detail,
