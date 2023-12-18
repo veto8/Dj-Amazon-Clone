@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'dj_rest_auth.registration',
+    'drf_yasg',
 
 
     #my apps
@@ -65,6 +66,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 25,
     'DEFAULT_AUTHENTICATION_CLASSES': [
         # 'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ]
 }
