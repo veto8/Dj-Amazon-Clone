@@ -18,3 +18,10 @@ class Company(models.Model):
     
     def __str__(self):
         return self.name
+    
+
+class DeleveryFee(models.Model):
+    fee = models.FloatField(_("Fee"))
+
+    def __str__(self):
+        return str(self.fee)

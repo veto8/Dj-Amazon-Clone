@@ -2,14 +2,18 @@ from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render,redirect
-from .models import Order ,OrderDetail,Cart,CartDetail
+from django.shortcuts import get_object_or_404
+from datetime import datetime
+
+from .models import Order ,OrderDetail,Cart,CartDetail,Coupon
 from products.models import Products
+from settings.models import DeleveryFee
 
 
 class OrderList(LoginRequiredMixin,generic.ListView):
     model = Order
     paginate_by = 4
-
+ 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
     
@@ -37,6 +41,49 @@ def remove_from_cart(request,id):
 def checkout(request):
     cart = Cart.objects.get(user=request.user,status='in_progress')
     cart_detail = CartDetail.objects.filter(cart=cart)
+    delvery_fee = DeleveryFee.objects.last().fee
+
+    if request.method == 'POST':
+        coupon = get_object_or_404(Coupon,code=request.POST['coupon_code'])
+
+        if coupon and coupon.quantity > 0:
+            today_date = datetime.today().date()
+
+            start_date = coupon.start_date.date()
+            end_date = coupon.end_date.date()
+
+            if today_date >= start_date and today_date <= end_date:
+                total_value = cart.get_total()  
+                discount =  total_value * coupon.discount / 100            
+                total_after_discount =  total_value - discount
+
+                coupon.quantity -= 1
+                coupon.save()
+
+                cart.coupon = coupon
+                cart.total_after_coupon = total_after_discount
+                cart.save()
+
+                total = total_after_discount + delvery_fee
+
+                cart = Cart.objects.get(user=request.user,status='in_progress')
+
+                return render(request, 'orders/checkout.html', {
+                    'cart_detail':cart_detail,
+                    'sub_total':total_after_discount,
+                    'delvery_fee':delvery_fee,
+                    'discount':discount ,
+                    'total':total,
+                })
+    else:
+            total_value = cart.get_total()
+            total = total_value + delvery_fee  
+            discount = 0
+
     return render(request, 'orders/checkout.html',{
-        'cart_detail':cart_detail,
-    })
+                'cart_detail':cart_detail,
+                'sub_total':total_value,
+                'delvery_fee':delvery_fee,
+                'discount':discount ,
+                'total':total,    
+            })

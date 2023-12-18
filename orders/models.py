@@ -12,7 +12,7 @@ CART_OPTION = (
     ('in_progress','in_progress'),
     ('completed','completed'),
 )
-
+ 
 class Cart(models.Model):
     user = models.ForeignKey(User, related_name='cart_user' ,on_delete=models.SET_NULL, blank=True, null=True)
     status = models.CharField(_("Status"), max_length=50,choices=CART_OPTION)

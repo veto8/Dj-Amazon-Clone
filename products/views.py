@@ -72,7 +72,7 @@ class BrandDetail(generic.ListView):
 def add_review(request,slug):
     product = Products.objects.get(slug=slug)
 
-    rate = request.POST['rate']
+    rate = request.POST['rate']         #  rate = request.POST.get('rate') ,  rate = request.GET.get('rate') 
     review = request.POST['review']
 
         # Check if the user is authenticated
@@ -88,6 +88,8 @@ def add_review(request,slug):
         feedback = review,
         user = user, 
     )
+
     reviews = ProductReviews.objects.filter(product=product)
     html = render_to_string('includes/review.html',{'reviews':reviews})
     return JsonResponse({'html':html})
+
