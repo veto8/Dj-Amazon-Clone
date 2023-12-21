@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #my app
+    'acounts',
+    #defalt apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,7 +57,6 @@ INSTALLED_APPS = [
 
 
     #my apps
-    'acounts',
     'orders',
     'products',
     'settings',
@@ -193,9 +195,14 @@ if DEBUG:
     import mimetypes
     mimetypes.add_type("application/javascript", ".js", True)
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-#         "LOCATION": "redis://myredis:6379/1",
-#     }
-# }
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://myredis:6379/1",
+    }
+}
+
+
+# Celery Configuration
+CELERY_BROKER_URL = 'redis://myredis:6379/0'
+CELERY_RESULT_BACKEND = 'redis://myredis:6379/0'

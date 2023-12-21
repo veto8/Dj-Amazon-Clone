@@ -6,7 +6,18 @@ services:
     ports:
       - "8000:8000"
     container_name: djbackend
+    depends_on:
+      - myredis
 
   myredis:
     image: redis:7.0.14-alpine3.19
     container_name: MyRedisServer
+
+  celery:
+    image: python:3.8
+    command: celery -A project worker -l info
+    volumes:
+      - ./project:/code
+    depends_on:
+      - myredis
+      - backend

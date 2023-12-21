@@ -5,10 +5,17 @@ from django.db.models.aggregates import Count
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 
-from .models import Products,Brand,Category,ProductReviews,ProductImage
-from .forms import ReviewForm
+from .models import Products,Brand,Category,ProductReviews
+from .tasks import test_celery
 
 
+
+
+def test(request):
+    data = Products.objects.all()[:5]
+
+    test_celery.delay()
+    return render ( request,'products/test.html',{'data':data})
 
 class ProductList(generic.ListView):
     model = Products
