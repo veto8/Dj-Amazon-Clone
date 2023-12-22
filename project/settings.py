@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'dj_rest_auth.registration',
     'drf_yasg',
+    "django_bootstrap5",
 
 
     #my apps
@@ -229,4 +230,8 @@ PASSWORD_RESET_TIMEOUT_DAYS = 1
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
