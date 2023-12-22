@@ -15,12 +15,13 @@ class Profile(models.Model):
     code = models.CharField(_("Code"), max_length=50, default=genrate_code)
 
     def __str__(self):
-        return self.email
+        return str(self.user)
 @receiver(post_save,sender=User)
 def create_profile(sender,instance,created,**kwargs):
     if created:
         Profile.objects.create(
-            user = instance
+            user = instance,
+            email = instance,
         )
 
 
@@ -35,7 +36,7 @@ class PhoneNum(models.Model):
     number = models.PositiveIntegerField(_("Number"))
 
     def __str__(self):
-        return self.user
+        return str(self.user)
 
 
 
@@ -54,4 +55,4 @@ class Address(models.Model):
     notes = models.TextField(_("Notes"),blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return str(self.user)
