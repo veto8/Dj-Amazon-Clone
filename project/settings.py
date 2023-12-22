@@ -225,3 +225,8 @@ AUTHENTICATION_BACKENDS = [
 
 # Optional: To allow users to reset their password using email
 PASSWORD_RESET_TIMEOUT_DAYS = 1
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
