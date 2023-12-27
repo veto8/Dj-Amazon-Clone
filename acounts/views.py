@@ -24,7 +24,7 @@ def signup(request):
                 fail_silently=False,
             )
 
-            return redirect(f'accounts/{username}/activate')
+            return redirect(f'/accounts/{username}/activate')
 
     else:
         form = SignupForm()
@@ -32,4 +32,16 @@ def signup(request):
     return render(request,'registration/register.html',{'form':form})
 
 def activate(request,username):
-    pass
+    profile = Profile.objects.get(user__username=username)
+    if request.method == 'POST':
+        form = ActivationForm(request.POST)
+        if form.is_valid():
+            code = form.cleaned_data['code']
+            if code == profile.code:
+                profile.code = ''
+                profile.save()
+                return redirect('/accounts/login') 
+    else:
+        form = ActivationForm()
+
+    return render(request,'registration/activate.html',{'form':form})
