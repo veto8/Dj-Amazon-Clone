@@ -24,14 +24,12 @@
                                 <div class="user-form-divider">
                                     <p>or</p>
                                 </div>
-                                <form class="user-form" method="post" action="{% url 'login' %}">
+                                <form class="user-form" method="post">
                                     {% csrf_token %}
 
                                     {% bootstrap_form form %}
                                     <div class="form-button">
-                                        <button type="submit">login</button>
-                                        <input type="hidden" name="next" value="{{ next }}">
-
+                                        <button type="submit">Signup</button>
                                     </div>
                                 </form>
                             </div>
