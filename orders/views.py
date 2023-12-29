@@ -11,6 +11,8 @@ from .models import Order ,OrderDetail,Cart,CartDetail,Coupon
 from products.models import Products
 from settings.models import DeleveryFee
 
+from django.conf import settings
+
 
 class OrderList(LoginRequiredMixin,generic.ListView):
     model = Order
@@ -44,6 +46,7 @@ def checkout(request):
     cart = Cart.objects.get(user=request.user,status='in_progress')
     cart_detail = CartDetail.objects.filter(cart=cart)
     delvery_fee = DeleveryFee.objects.last().fee
+    pub_key = settings.STRIPE_API_PUBLISHABLE_KEY
 
     if request.method == 'POST':
         coupon = get_object_or_404(Coupon,code=request.POST['coupon_code'])
@@ -76,6 +79,7 @@ def checkout(request):
                     'delvery_fee':delvery_fee,
                     'discount':discount ,
                     'total':total,
+                    'pub_key':pub_key,
                 })
                 return JsonResponse({'html':html})
 
@@ -97,5 +101,14 @@ def checkout(request):
                 'sub_total':total_value,
                 'delvery_fee':delvery_fee,
                 'discount':discount ,
-                'total':total,    
+                'total':total,
+                'pub_key':pub_key,    
             })
+
+
+def payment_process(request):
+    pass
+
+
+
+

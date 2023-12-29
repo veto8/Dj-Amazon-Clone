@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
+from django.conf import settings
 
 from .forms import SignupForm,ActivationForm
 from .models import Profile
 
-from django.conf import settings
+
 
 
 

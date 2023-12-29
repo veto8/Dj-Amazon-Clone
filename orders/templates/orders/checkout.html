@@ -255,7 +255,7 @@
                                 <label for="checkout-check">By making this purchase you agree to our <a href="#">Terms and Conditions</a>.</label>
                             </div>
                             <div class="checkout-proced">
-                                <a href="invoice.html" class="btn btn-inline">proced to checkout</a>
+                                <button onclick="buy(event)" class="btn btn-inline">proced to checkout</button>
                             </div>
                         </div>
                     </div>
@@ -411,7 +411,27 @@
                     MODAL EDIT FORM END
         =======================================-->
         <script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+        <script src="{% static 'js/js.stripe.com' %}" ></script>
+
         <script>
+            function buy(event){
+                event.preventDefault()
+                
+                var stripe = Stripe(pub_key)
+
+                fetch('/orders/checkout/payment',{
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken':'{{ csrf_token }}',
+                        'Content-Type':'application/json',
+                    }.then(function(response){
+                        return response.json()
+                    }).then(function(session){
+                        return stripe.redirectToChechout({ sessionId: session.session.id })
+                    })
+                })
+            }
+            
             $(document).ready(function(e){
                 
                 $(document).on('submit','#form_coupon',function(e){

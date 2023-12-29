@@ -239,8 +239,13 @@ LOGOUT_REDIRECT_URL = '/'
 # send mail to my gmail account 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
 EMAIL_HOST_USER = "omar.raouf.002@gmail.com"
-EMAIL_HOST_PASSWORD = "boognskhhoggdpph"
+EMAIL_HOST_PASSWORD = "lavnvrpknvqnfcep"
+EMAIL_USE_TLS = True
+EMAIL_PORT = '587'
+
+STRIPE_API_PUBLISHABLE_KEY = 'pk_test_51OSNkPBBmrSIfCmnHW4H1zaeIUBWaPAYsdOFo1KHYNvTojFjvRqVGn8IW63xqgQvD4UvboK1WJuMiNof5eIHxOEi000jQcxf83'
+STRIPE_API_SECRET_KEY = 'sk_test_51OSNkPBBmrSIfCmnWGVOvXvMw5ZYnFLnltbaxqMOc20sSoua451RXiu7Pyb7S5jCnughXJ8U0tpD2FOv88Pl0J6r00quAqqziC'
+
+
 
