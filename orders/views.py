@@ -142,6 +142,28 @@ def payment_process(request):
     
 
 def success_payment(request):
+    cart = Cart.objects.get(user=request.user,status='in_progress')
+    cart_detail = CartDetail.objects.filter(cart=cart)
+
+        #  cart --> order
+    new_order = Order.objects.create(
+            user= request.user,
+            coupon = cart.coupon,
+            total_after_coupon = cart.total_after_coupon,
+        )
+
+        #  cart_detail --> order_detail 
+    for item in cart_detail:
+        OrderDetail.objects.create(
+            order = new_order,
+            product = item.product,
+            price = item.product.price,
+            quantity = item.quantity,
+            total = round(int(item.quantity) * item.product.price ,2),
+        )
+        
+    cart.status = 'completed'
+    cart.save()
     return render(request, 'orders/success.html',{})
 
 def canceled_payment(request):

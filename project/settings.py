@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*1es*9t9&)v4j)j=#eiq7x=!&m8#2racx8-x*ipidd7q#&b_o4'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -239,13 +242,13 @@ LOGOUT_REDIRECT_URL = '/'
 # send mail to my gmail account 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = "omar.raouf.002@gmail.com"
-EMAIL_HOST_PASSWORD = "lavnvrpknvqnfcep"
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_TLS = True
 EMAIL_PORT = '587'
 
-STRIPE_API_PUBLISHABLE_KEY = 'pk_test_51OSNkPBBmrSIfCmnHW4H1zaeIUBWaPAYsdOFo1KHYNvTojFjvRqVGn8IW63xqgQvD4UvboK1WJuMiNof5eIHxOEi000jQcxf83'
-STRIPE_API_SECRET_KEY = 'sk_test_51OSNkPBBmrSIfCmnWGVOvXvMw5ZYnFLnltbaxqMOc20sSoua451RXiu7Pyb7S5jCnughXJ8U0tpD2FOv88Pl0J6r00quAqqziC'
+STRIPE_API_PUBLISHABLE_KEY = os.getenv('STRIPE_API_PUBLISHABLE_KEY')
+STRIPE_API_SECRET_KEY = os.getenv('STRIPE_API_SECRET_KEY')
 
 
 
