@@ -10,8 +10,10 @@ from django.template.loader import render_to_string
 from .models import Order ,OrderDetail,Cart,CartDetail,Coupon
 from products.models import Products
 from settings.models import DeleveryFee
+from utiles.generate_code import genrate_code
 
 from django.conf import settings
+import stripe
 
 
 class OrderList(LoginRequiredMixin,generic.ListView):
@@ -107,7 +109,43 @@ def checkout(request):
 
 
 def payment_process(request):
-    pass
+    cart = Cart.objects.get(user=request.user,status='in_progress')
+    delvery_fee = DeleveryFee.objects.last().fee
+
+    stripe.api_key = settings.STRIPE_API_SECRET_KEY
+
+    if cart.total_after_coupon:
+        total = cart.total_after_coupon + delvery_fee
+
+    else:
+        total = cart.get_total() + delvery_fee
+
+    domain = 'http://127.0.0.1:8000/orders/checkout/payment/'
+    code = genrate_code()
+    session = stripe.checkout.Session.create(
+        line_items=[{
+        'price_data': {
+            'currency': 'usd',
+            'product_data': {
+                'name': code,
+            },
+            'unit_amount': int(total * 100),
+        },
+        'quantity': 1,
+        }],
+        
+        mode='payment',
+        success_url= domain +'success',
+        cancel_url= domain +'canceled',
+    )
+    return JsonResponse({'session':session})
+    
+
+def success_payment(request):
+    return render(request, 'orders/success.html',{})
+
+def canceled_payment(request):
+    return render(request, 'orders/cancel.html',{})
 
 
 

@@ -7,9 +7,6 @@ from .forms import SignupForm,ActivationForm
 from .models import Profile
 
 
-
-
-
 def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST)
