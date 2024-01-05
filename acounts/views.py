@@ -2,9 +2,10 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
+from django.views import generic
 
 from .forms import SignupForm,ActivationForm
-from .models import Profile
+from .models import Profile,PhoneNum,Address
 
 
 def signup(request):
@@ -56,3 +57,18 @@ def activate(request,username):
         form = ActivationForm()
 
     return render(request,'registration/activate.html',{'form':form})
+
+def profile(request):
+    profile = Profile.objects.filter(user=request.user)
+    phone_num = PhoneNum.objects.filter(user=request.user)
+    address = Address.objects.filter(user=request.user)
+    return render(request,'registration/profile.html',{
+        'profile':profile,
+        'phone_num':phone_num,
+        'address':address
+    })
+
+
+# class Profile(generic.ListView):
+#     model = Profile
+#     template_name = 'registration/profile.html'
