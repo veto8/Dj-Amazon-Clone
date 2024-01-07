@@ -20,3 +20,4 @@ class SignupForm(UserCreationForm):
 class ActivationForm(forms.Form):
     code = forms.CharField(max_length=8)
 
+ 

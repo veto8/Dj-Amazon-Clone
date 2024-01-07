@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 
 from .models import Products,Brand,Category,ProductReviews
 from .tasks import test_celery
+from .myfilter import ProductFilter
 
 
 
@@ -20,6 +21,16 @@ def test(request):
 class ProductList(generic.ListView):
     model = Products
     paginate_by = 20
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        myfilter = ProductFilter(self.request.GET, queryset=queryset)
+        return myfilter.qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myfilter'] = ProductFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
    
 
