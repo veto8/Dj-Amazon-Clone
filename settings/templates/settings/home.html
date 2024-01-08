@@ -15,11 +15,11 @@
                                 <h1>free home delivery within 24 hours now.</h1>
                                 <p>Lorem ipsum dolor consectetur adipisicing elit modi consequatur eaque expedita porro necessitatibus eveniet voluptatum quis pariatur Laboriosam molestiae architecto excepturi</p>
                                 <div class="banner-btn">
-                                    <a class="btn btn-inline" href="shop-4column.html">
+                                    <a class="btn btn-inline" href="{% url 'products:product_list' %}">
                                         <i class="fas fa-shopping-basket"></i>
                                         <span>shop now</span>
                                     </a>
-                                    <a class="btn btn-outline" href="offer.html">
+                                    <a class="btn btn-outline" href="#">
                                         <i class="icofont-sale-discount"></i>
                                         <span>get offer</span>
                                     </a>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-md-6 col-lg-6">
                             <div class="banner-img">
-                                <img src="images/home/index/01.png" alt="index">
+                                <img src="{% static 'images/home/index/01.png' %}" alt="index">
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                     <div class="row align-items-center">
                         <div class="col-md-6 col-lg-6">
                             <div class="banner-img">
-                                <img src="images/home/index/02.png" alt="index">
+                                <img src="{% static 'images/home/index/02.png' %}" alt="index">
                             </div>
                         </div>
                         <div class="col-md-6 col-lg-6">
@@ -76,7 +76,7 @@
                     
                     {% for ctg in ctgs %}
                         <li>
-                            <a class="suggest-card" href="shop-4column.html" >
+                            <a class="suggest-card" href="{% url 'products:product_list' %}" >
                                 <img src="{{ctg.img.url}}" style="width:212px;height:177px" alt="suggest">
                                 <h5>{{ctg.name}}<span>{{ctg.product_num}} items</span></h5>
                             </a>
