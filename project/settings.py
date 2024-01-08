@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'dj_rest_auth.registration',
     'drf_yasg',
     "django_bootstrap5",
+    'bootstrap5',
 
 
     #my apps

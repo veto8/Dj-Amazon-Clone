@@ -4,6 +4,7 @@ from django.views import generic
 from django.db.models.aggregates import Count
 from django.http import JsonResponse
 from django.template.loader import render_to_string
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Products,Brand,Category,ProductReviews
 from .tasks import test_celery
@@ -34,7 +35,7 @@ class ProductList(generic.ListView):
 
    
 
-class ProductDetail(generic.DetailView):
+class ProductDetail(LoginRequiredMixin,generic.DetailView):
     model = Products
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -71,7 +72,7 @@ class BrandList(generic.ListView):
 
     
 
-class BrandDetail(generic.ListView):
+class BrandDetail(LoginRequiredMixin,generic.ListView):
     model = Products
     paginate_by = 15 
     template_name = 'products/brand_detail.html'
