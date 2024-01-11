@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 from django.views import generic
+from django.contrib.auth.decorators import login_required
 
 from .forms import SignupForm,ActivationForm
 from .models import Profile,PhoneNum,Address
@@ -58,6 +59,7 @@ def activate(request,username):
 
     return render(request,'registration/activate.html',{'form':form})
 
+@login_required
 def profile(request):
     profile = Profile.objects.filter(user=request.user)
     phone_num = PhoneNum.objects.filter(user=request.user)

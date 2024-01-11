@@ -108,6 +108,7 @@ TEMPLATES = [
                 'settings.company_context_processor.get_info',
                 'orders.order_context_processor.cart_info', 
                 'products.product_context_processor.product_info',
+                'acounts.accounts_context_processor.my_profile',
             ],
         },
     },

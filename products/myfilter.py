@@ -4,7 +4,7 @@ from django import forms
 from django.db import models
 from .models import Products
 
-
+ 
 class ProductFilter(filters.FilterSet):
     name = django_filters.CharFilter(
         label='Product Name',

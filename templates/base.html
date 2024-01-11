@@ -104,16 +104,16 @@
                 <div class="header-content">
                     <div class="header-media-group">
                         <button class="header-user"><img src="images/user.png" alt="user"></button>
-                        <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+                        <a href="index.html"><img src="{{info.logo.url}}" alt="logo"></a>
                         <button class="header-src"><i class="fas fa-search"></i></button>
                     </div>
 
                     <a href="{{'/'}}" class="header-logo">
                         <img src="{{info.logo.url}}" alt="logo">
                     </a>
-                    <a href="login.html" class="header-widget" title="My Account">
-                        <img src="{{info.logo.url}}" alt="user">
-                        <span>join</span>
+                    <a href="/accounts/profile/" class="header-widget" title="My Account">
+                        <img src="{{profile.image.url}}" alt="user">
+                        <span>My profile</span>
                     </a>
 
                     <form class="header-form">
@@ -122,10 +122,6 @@
                     </form>
 
                     <div class="header-widget-group">
-                        <a href="wishlist.html" class="header-widget" title="Wishlist">
-                            <i class="fas fa-heart"></i>
-                            <sup>0</sup>
-                        </a>
                         <button class="header-widget header-cart" title="Cartlist">
                             <i class="fas fa-shopping-basket"></i>
                             <sup>{{cart_detail_data|length}}</sup>
@@ -159,9 +155,6 @@
                                     <a class="navbar-link" href="{% url 'products:brand_list' %}">Brands</a>
                                 <li class="navbar-item dropdown">
                                     <a class="navbar-link" href="/orders/">Orders</a>
-                                </li>
-                                <li class="navbar-item dropdown">
-                                    <a class="navbar-link" href="/accounts/profile/">My profile</a>
                                 </li>
                             </ul>
                             <div class="navbar-info-group">
