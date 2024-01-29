@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Dj-Amazon-Clone
 
 ![GitHub stars][]![GitHub watchers][]![GitHub forks][]
@@ -61,6 +60,6 @@ Contributions are welcome! If you would like to contribute to Dj-Amazon-Clone, p
 
 ## Preview
 ![](screenshot.png)
-=======
 
->>>>>>> fa9600c18133472b3bcd63293dc35a713d81a024
+
+
