@@ -62,7 +62,5 @@ Contributions are welcome! If you would like to contribute to Dj-Amazon-Clone, p
 ## Preview
 ![](screenshot.png)
 =======
-# Greeny
-The Greeny project is a Django Rest API designed to power your e-commerce platform. 
- used : Docker,Redis,Celery,Postgres,Ajax
+
 >>>>>>> fa9600c18133472b3bcd63293dc35a713d81a024
