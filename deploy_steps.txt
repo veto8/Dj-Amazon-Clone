@@ -1,0 +1,11 @@
+Heroku :
+    - account heroku 
+    - install heroku cli
+    - django project :
+            - Procfile  -->  web: gunicorn project.wsgi --log-file=-
+            - runtime.txt --> python-3.12.1
+            - setup :
+                - django_heroku
+                - whitenoise
+                - gunicorn
+            - update requirments.txt file 
