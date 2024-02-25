@@ -5,5 +5,5 @@ def my_profile(request):
         user_id = request.user.id
     else:
         user_id = 1 
-    profile = Profile.objects.get(user=user_id)
+    profile = Profile.objects.filter(user=user_id)
     return {'profile':profile}
