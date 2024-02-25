@@ -98,10 +98,13 @@
                                             <del>$38</del>
                                             <span>${{product.price}}<small>/piece</small></span>
                                         </h6>
-                                        <button class="product-add" title="Add to Cart">
-                                            <i class="fas fa-shopping-basket"></i>
-                                            <span>add</span>
-                                        </button>
+                                        <a href="{% url 'products:product_detail' product.slug %}">
+                                            <button class="product-add" title="Details">
+                                                <i class="fas fa-shopping-basket"></i>
+                                                <span>details</span>
+                                            </button>
+                                        </a>
+
                                         <div class="product-action">
                                             <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
                                             <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1">

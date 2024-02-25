@@ -130,6 +130,15 @@
                             <span>total price<small>${{cart_data.get_total}}</small></span>
                         </button>
                     </div>
+                    {% if request.user.is_authenticated %}
+                        <a href="/accounts/login/">
+                            <button class="btn btn-light" id="logout">logout</button>
+                        </a> 
+                    {% else %}
+                        <a href="/accounts/login/">
+                            <button class="btn btn-light" id="login">login</button>
+                        </a> 
+                    {% endif %}
                 </div>
             </div>
         </header>
@@ -686,10 +695,7 @@
                         <div class="footer-widget">
                             <h3 class="footer-title">Download App</h3>
                             <p class="footer-desc">{{info.subtitle}}</p>
-                            <div class="footer-app">
-                                <a href="#"><img src="images/google-store.png" alt="google"></a>
-                                <a href="#"><img src="images/app-store.png" alt="app"></a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -697,12 +703,6 @@
                     <div class="col-12">
                         <div class="footer-bottom">
                             <p class="footer-copytext">&copy;  All Copyrights Reserved by <a target="_blank" href="https://themeforest.net/user/mironcoder">Mironcoder</a></p>
-                            <div class="footer-card">
-                                <a href="#"><img src="images/payment/jpg/01.jpg" alt="payment"></a>
-                                <a href="#"><img src="images/payment/jpg/02.jpg" alt="payment"></a>
-                                <a href="#"><img src="images/payment/jpg/03.jpg" alt="payment"></a>
-                                <a href="#"><img src="images/payment/jpg/04.jpg" alt="payment"></a>
-                            </div>
                         </div>
                     </div>
                 </div>
